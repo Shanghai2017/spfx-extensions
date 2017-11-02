@@ -4,6 +4,32 @@
         Title="NextTrainingInfo"
         Location="ClientSideExtension.ApplicationCustomizer"
         ClientSideComponentId="525c7b58-f5f5-4827-8825-059c4aca3168"
-        ClientSideComponentProperties="{&quot;testMessage&quot;:&quot;Test message&quot;}">
+        ClientSideComponentProperties="{}">
     </CustomAction>
+    <CustomAction
+        Title="QRCode"
+        RegistrationId="100"
+        RegistrationType="List"
+        Location="ClientSideExtension.ListViewCommandSet.CommandBar"
+        ClientSideComponentId="5acce4dd-cde5-4e77-acec-ad4ff0e1c0dc"
+        ClientSideComponentProperties="{}">
+    </CustomAction>
+    <CustomAction
+        Title="AddTask"
+        RegistrationId="100"
+        RegistrationType="List"
+        Location="ClientSideExtension.ListViewCommandSet.CommandBar"
+        ClientSideComponentId="33ff8e00-d7df-4fa9-9319-33cda5611a33"
+        ClientSideComponentProperties="{}">
+    </CustomAction>
+    <Field
+        ID="417a537a-da5d-4b84-b422-939c6c064ba6"
+        Name="Video"
+        DisplayName="Video"
+        Type="Text"
+        Min="0"
+        Required="FALSE"
+        Group="SPFx Columns"
+        ClientSideComponentId="4196410f-99c7-4348-b838-f89f105d53a6">
+    </Field>
 </Elements>
