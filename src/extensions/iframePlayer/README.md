@@ -38,3 +38,9 @@ It shows the iframe player in a customized field.
     ```
     ?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={"_APPLICATION_CUSTOMIZER_ID_":{"location":"ClientSideExtension.ApplicationCustomizer","properties":{}}}&fieldCustomizers={"Link":{"id":"_FIELD_CUSTOMIZER_ID_","properties":{"sampleText":"Test"}}}
     ```
+
+5. Walk through the code in [`IframePlayerFieldCustomizer` file](IframePlayerFieldCustomizer.ts).
+
+    - `onInit`: The hook run on field customizer initialization phrase.
+    - `onRenderCell`: The method to customize the `event.domElement` on each cell in the target column.
+    - `onDisposeCell`: The method to clean up the resource allocated during `onRenderCell`.
