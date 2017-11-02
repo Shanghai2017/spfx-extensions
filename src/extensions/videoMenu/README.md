@@ -29,3 +29,16 @@ It add a button to show QR Code for the link in contextual menu.
     ```
 
 4. All three extensions should work fine.
+
+5. Walk through the code in [manifest file](VideoMenuCommandSet.manifest.json).
+
+    - `items`: The object to declare which commands this extension is providing. The key is the command ID, the value is its configuration.
+    - `title`: The title to show in the UI for the command. It support localized strings.
+    - `iconImageUrl`: The icon image URL for the command. Currently, only image URL from web can be used here. It shows as 16x16 size.
+    - `type`: Always fill as `command` at this moment.
+
+6. Walk through the code in [`VideoMenuCommandSet` file](VideoMenuCommandSet.ts).
+
+    - `onInit`: The hook to initialize the list view command set.
+    - `onListViewUpdated`: The method called when selected list items is changed. It can be used to dynamically show/hide a command.
+    - `onExecute`: The method to execute concrete logic when a command is click. Check value of `event.itemId` to run different logics for different commands.
