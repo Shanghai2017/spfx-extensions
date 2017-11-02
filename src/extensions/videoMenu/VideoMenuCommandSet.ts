@@ -6,24 +6,14 @@ import {
   IListViewCommandSetListViewUpdatedParameters,
   IListViewCommandSetExecuteEventParameters
 } from '@microsoft/sp-listview-extensibility';
-import { Dialog } from '@microsoft/sp-dialog';
+
+import QRCodeDialog from './QRCodeDialog';
 
 import * as strings from 'VideoMenuCommandSetStrings';
 
-/**
- * If your command set uses the ClientSideComponentProperties JSON input,
- * it will be deserialized into the BaseExtension.properties object.
- * You can define an interface to describe it.
- */
-export interface IVideoMenuCommandSetProperties {
-  // This is an example; replace with your own properties
-  sampleTextOne: string;
-  sampleTextTwo: string;
-}
-
 const LOG_SOURCE: string = 'VideoMenuCommandSet';
 
-export default class VideoMenuCommandSet extends BaseListViewCommandSet<IVideoMenuCommandSetProperties> {
+export default class VideoMenuCommandSet extends BaseListViewCommandSet<{}> {
 
   @override
   public onInit(): Promise<void> {
@@ -33,21 +23,19 @@ export default class VideoMenuCommandSet extends BaseListViewCommandSet<IVideoMe
 
   @override
   public onListViewUpdated(event: IListViewCommandSetListViewUpdatedParameters): void {
-    const compareOneCommand: Command = this.tryGetCommand('COMMAND_1');
-    if (compareOneCommand) {
-      // This command should be hidden unless exactly one row is selected.
-      compareOneCommand.visible = event.selectedRows.length === 1;
+    const qrCodeCommand: Command = this.tryGetCommand('QR_CODE');
+    if (qrCodeCommand) {
+      qrCodeCommand.visible = event.selectedRows.length === 1;
     }
   }
 
   @override
   public onExecute(event: IListViewCommandSetExecuteEventParameters): void {
+    const videoLink: string = event.selectedRows[0].getValueByName('Link');
     switch (event.itemId) {
-      case 'COMMAND_1':
-        Dialog.alert(`${this.properties.sampleTextOne}`);
-        break;
-      case 'COMMAND_2':
-        Dialog.alert(`${this.properties.sampleTextTwo}`);
+      case 'QR_CODE':
+        const dialog: QRCodeDialog = new QRCodeDialog(videoLink);
+        dialog.show();
         break;
       default:
         throw new Error('Unknown command');
