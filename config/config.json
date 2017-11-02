@@ -13,11 +13,20 @@
           "manifest": "./src/extensions/iframePlayer/IframePlayerFieldCustomizer.manifest.json"
         }
       ]
+    },
+    "video-menu-command-set": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/videoMenu/VideoMenuCommandSet.js",
+          "manifest": "./src/extensions/videoMenu/VideoMenuCommandSet.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
     "NextTrainingInfoApplicationCustomizerStrings": "lib/extensions/nextTrainingInfo/loc/{locale}.js",
-    "IframePlayerFieldCustomizerStrings": "lib/extensions/iframePlayer/loc/{locale}.js"
+    "IframePlayerFieldCustomizerStrings": "lib/extensions/iframePlayer/loc/{locale}.js",
+    "VideoMenuCommandSetStrings": "lib/extensions/videoMenu/loc/{locale}.js"
   }
 }
