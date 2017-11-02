@@ -27,3 +27,40 @@ It provides a button in contextual menu to add the training task to [Microsoft P
     - After the plan is created, in the URL, you can see the group ID and plan ID. Remember them to check if they match the value from APIs when debugging.
     - In the right top corner, skip to *Group by progress* view. The default view is *Group by bucket*. Because from the API, we create the tasks without bucket, they will not show in the default view.
     - You will receive an email about *IT Training* group is created. When create a plan, it will implicitly create a group with same name for us.
+
+## Step 3
+
+1. Run `yo @microsoft/sharepoint` to generate a new List View Command Set extension.
+
+2. Update the [`config.json`](../../../config/config.json) file to make one bundle.
+
+3. Prepare the test query string.
+
+    ```
+    ?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&fieldCustomizers={"Link":{"id":"_FIELD_CUSTOMIZER_ID_","properties":{}}}&customActions={"_APPLICATION_CUSTOMIZER_ID_":{"location":"ClientSideExtension.ApplicationCustomizer","properties":{}},"_COMMAND_SET_1_ID_":{"location":"ClientSideExtension.ListViewCommandSet.CommandBar","properties":{}},"_COMMAND_SET_2_ID_":{"location":"ClientSideExtension.ListViewCommandSet.CommandBar","properties":{}}}
+    ```
+
+4. Update the command declaration in [manifest file](AddTaskCommandSet.manifest.json).
+
+    - Command ID: ADD_TASK
+    - Title: Add a task
+    - Icon Image URL: https://png.icons8.com/task-filled/ios7/16/0078d7
+
+5. Implement the visible logic and execution logic in [`AddTaskCommandSet` file](AddTaskCommandSet.ts).
+
+    - Get the group ID with the name **IT Training**.
+    - Get the planner ID with the name **IT Training** under the group.
+    - Create the task with title and link to the planner.
+    - If the task is created successfully, show the succeed message in the dialog.
+    - If anything failed during the flow, show the error message in the dialog.
+
+6. Test the extension is working.
+
+    - Refresh the page with test query string.
+    - Select one item, click *Add to task* button in contextual menu.
+    - Wait a while, the success dialog should pop up.
+    - Go to Microsoft Planner, refresh the *IT Training* plan, switch to *Group by progress* view, our new created task should be there.
+
+## Credits
+
+This extension is using some icons from [Icon8](https://icons8.com/). They are licensed under [Creative Commons Attribution-NoDerivs 3.0 Unported](https://creativecommons.org/licenses/by-nd/3.0/). Read its license [here](https://icons8.com/license).
