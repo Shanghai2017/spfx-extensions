@@ -47,6 +47,18 @@
           }
         }
       }
+    },
+    "addTask": {
+      "pageUrl": "https://contoso.sharepoint.com/sites/mySite/SitePages/myPage.aspx",
+      "customActions": {
+        "33ff8e00-d7df-4fa9-9319-33cda5611a33": {
+          "location": "ClientSideExtension.ListViewCommandSet.CommandBar",
+          "properties": {
+            "sampleTextOne": "One item is selected in the list",
+            "sampleTextTwo": "This command is always visible."
+          }
+        }
+      }
     }
   }
 }
