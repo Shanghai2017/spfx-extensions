@@ -44,3 +44,20 @@ It shows the iframe player in a customized field.
     - `onInit`: The hook run on field customizer initialization phrase.
     - `onRenderCell`: The method to customize the `event.domElement` on each cell in the target column.
     - `onDisposeCell`: The method to clean up the resource allocated during `onRenderCell`.
+
+## Step 4
+
+1. Update the logic to show the iframe player.
+
+    - Concatenate the `Link` value with `/player` to be a player URL.
+    - Render it inside a `iframe` tag with size `width=96` and `height=54`.
+    - Apply `frameBorder="0"` to make it looks better.
+    - Apply `sandbox=""` to avoid it restore the progress from the last time.
+
+2. Leverage Fabric React [Modal](https://developer.microsoft.com/en-us/fabric#/components/modal) component to get better experience.
+
+    - Put a `<button>` overlap with `<iframe>` to make it looks like a thumbnail.
+    - When click on the `<button>`, open the `<IframeModal>` with auto-play video.
+    - The `<IframeModal>` use `open` state to control if it is rendered.
+    - Apply `allowFullScreen=true` to allow the iframe player occupy full screen.
+    - Leverage `IframeModal` ref in `IframePlayer` to open the modal.
