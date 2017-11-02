@@ -9,15 +9,15 @@ import {
 
 import QRCodeDialog from './QRCodeDialog';
 
-import * as strings from 'VideoMenuCommandSetStrings';
+import * as strings from 'QRCodeCommandSetStrings';
 
-const LOG_SOURCE: string = 'VideoMenuCommandSet';
+const LOG_SOURCE: string = 'QRCodeCommandSet';
 
-export default class VideoMenuCommandSet extends BaseListViewCommandSet<{}> {
+export default class QRCodeCommandSet extends BaseListViewCommandSet<{}> {
 
   @override
   public onInit(): Promise<void> {
-    Log.info(LOG_SOURCE, 'Initialized VideoMenuCommandSet');
+    Log.info(LOG_SOURCE, 'Initialized QRCodeCommandSet');
     return Promise.resolve();
   }
 

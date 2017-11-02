@@ -2,7 +2,7 @@
   "$schema": "https://dev.office.com/json-schemas/spfx/command-set-extension-manifest.schema.json",
 
   "id": "5acce4dd-cde5-4e77-acec-ad4ff0e1c0dc",
-  "alias": "VideoMenuCommandSet",
+  "alias": "QRCodeCommandSet",
   "componentType": "Extension",
   "extensionType": "ListViewCommandSet",
 
