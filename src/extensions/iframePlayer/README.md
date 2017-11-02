@@ -20,3 +20,21 @@ It shows the iframe player in a customized field.
 3. Change the bundle name to more generic one - `it-training-extensions`.
 
 4. Run `gulp clean && gulp` and check `dist` folder. It generates the `it-training-extensions.js` file.
+
+## Step 3
+
+1. Run `gulp serve --nobrowser` to launch the server.
+
+2. Apply the following URL into your **Videos** list URL. Replace the `_FIELD_CUSTOMIZER_ID_` with ID from [the `IframePlayer` manifest file](IframePlayerFieldCustomizer.manifest.json). Notice the `Link` field name in the JSON blob matches the column name in **Videos** list.
+
+    ```
+    ?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&fieldCustomizers={"Link":{"id":"_FIELD_CUSTOMIZER_ID_","properties":{"sampleText":"Test"}}}
+    ```
+
+3. Notice the `Link` column in the table has prefix the `Test: ` string dynamically.
+
+4. We can combine the test query string for application customizer with this one. Replace the `_ID_` accordingly. You should see both extensions are working.
+
+    ```
+    ?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={"_APPLICATION_CUSTOMIZER_ID_":{"location":"ClientSideExtension.ApplicationCustomizer","properties":{}}}&fieldCustomizers={"Link":{"id":"_FIELD_CUSTOMIZER_ID_","properties":{"sampleText":"Test"}}}
+    ```
