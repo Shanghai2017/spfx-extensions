@@ -8,13 +8,13 @@ It add a button to show QR Code for the link in contextual menu.
 
     - Component type: Extension
     - Extension type: ListView Command Set
-    - Name: VideoMenu
+    - Name: QRCode
 
 2. Open [`config.json`](../../../config/config.json) file and make the new generated component into the `spfx-extensions` bundle.
 
 ## Step 2
 
-1. Run `gulp serve --nobrowser` to launch the server. Append the following query string to **Videos** list URL. Replace `_COMMAND_SET_ID_` with the ID in [manifest file](VideoMenuCommandSet.manifest.json).
+1. Run `gulp serve --nobrowser` to launch the server. Append the following query string to **Videos** list URL. Replace `_COMMAND_SET_ID_` with the ID in [manifest file](QRCodeCommandSet.manifest.json).
 
     ```
     ?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={"_COMMAND_SET_ID_":{"location":"ClientSideExtension.ListViewCommandSet.CommandBar","properties":{"sampleTextOne":"One item is selected in the list.","sampleTextTwo":"This command is always visible."}}}
@@ -30,14 +30,14 @@ It add a button to show QR Code for the link in contextual menu.
 
 4. All three extensions should work fine.
 
-5. Walk through the code in [manifest file](VideoMenuCommandSet.manifest.json).
+5. Walk through the code in [manifest file](QRCodeCommandSet.manifest.json).
 
     - `items`: The object to declare which commands this extension is providing. The key is the command ID, the value is its configuration.
     - `title`: The title to show in the UI for the command. It support localized strings.
     - `iconImageUrl`: The icon image URL for the command. Currently, only image URL from web can be used here. It shows as 16x16 size.
     - `type`: Always fill as `command` at this moment.
 
-6. Walk through the code in [`VideoMenuCommandSet` file](VideoMenuCommandSet.ts).
+6. Walk through the code in [`QRCodeCommandSet` file](QRCodeCommandSet.ts).
 
     - `onInit`: The hook to initialize the list view command set.
     - `onListViewUpdated`: The method called when selected list items is changed. It can be used to dynamically show/hide a command.
