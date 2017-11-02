@@ -16,14 +16,9 @@
   "requiresCustomScript": false,
 
   "items": {
-    "COMMAND_1": {
-      "title": { "default": "Command One" },
-      "iconImageUrl": "icons/request.png",
-      "type": "command"
-    },
-    "COMMAND_2": {
-      "title": { "default": "Command Two" },
-      "iconImageUrl": "icons/cancel.png",
+    "QR_CODE": {
+      "title": { "default": "QR Code", "en-us": "QR Code", "zh-cn": "二维码" },
+      "iconImageUrl": "https://png.icons8.com/qr-code/p1em/16/0078d7",
       "type": "command"
     }
   }
