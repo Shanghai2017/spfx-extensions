@@ -7,23 +7,13 @@ import {
   IListViewCommandSetExecuteEventParameters
 } from '@microsoft/sp-listview-extensibility';
 import { Dialog } from '@microsoft/sp-dialog';
+import { GraphHttpClient, GraphHttpClientResponse } from '@microsoft/sp-http';
 
 import * as strings from 'AddTaskCommandSetStrings';
 
-/**
- * If your command set uses the ClientSideComponentProperties JSON input,
- * it will be deserialized into the BaseExtension.properties object.
- * You can define an interface to describe it.
- */
-export interface IAddTaskCommandSetProperties {
-  // This is an example; replace with your own properties
-  sampleTextOne: string;
-  sampleTextTwo: string;
-}
-
 const LOG_SOURCE: string = 'AddTaskCommandSet';
 
-export default class AddTaskCommandSet extends BaseListViewCommandSet<IAddTaskCommandSetProperties> {
+export default class AddTaskCommandSet extends BaseListViewCommandSet<{}> {
 
   @override
   public onInit(): Promise<void> {
@@ -33,24 +23,70 @@ export default class AddTaskCommandSet extends BaseListViewCommandSet<IAddTaskCo
 
   @override
   public onListViewUpdated(event: IListViewCommandSetListViewUpdatedParameters): void {
-    const compareOneCommand: Command = this.tryGetCommand('COMMAND_1');
-    if (compareOneCommand) {
-      // This command should be hidden unless exactly one row is selected.
-      compareOneCommand.visible = event.selectedRows.length === 1;
+    const addTaskCommand: Command = this.tryGetCommand('ADD_TASK');
+    if (addTaskCommand) {
+      addTaskCommand.visible = event.selectedRows.length === 1;
     }
   }
 
   @override
   public onExecute(event: IListViewCommandSetExecuteEventParameters): void {
+    const title: string = event.selectedRows[0].getValueByName('Title');
+    const videoLink: string = event.selectedRows[0].getValueByName('Link');
+
     switch (event.itemId) {
-      case 'COMMAND_1':
-        Dialog.alert(`${this.properties.sampleTextOne}`);
-        break;
-      case 'COMMAND_2':
-        Dialog.alert(`${this.properties.sampleTextTwo}`);
+      case 'ADD_TASK':
+        this._addToPlanner({ title, videoLink })
+          .then(() => Dialog.alert(`Add training ${title} to Planner successfully!`))
+          .catch((e: Error) => Dialog.alert(`Add training ${title} to Planner failed. ${e.message}`));
         break;
       default:
         throw new Error('Unknown command');
     }
+  }
+
+  private async _addToPlanner(info: { title: string, videoLink: string }): Promise<void> {
+    const groupResponse: GraphHttpClientResponse = await this.context.graphHttpClient.get(
+      "v1.0/groups/?$select=id&$filter=displayName eq 'IT Training'",
+      GraphHttpClient.configurations.v1
+    );
+    if (groupResponse.status !== 200) {
+      throw new Error(`Get group request returns ${groupResponse.status}, expect 200`);
+    }
+
+    const groupResult: { value: { id: string }[] } = await groupResponse.json();
+    if (groupResult.value.length === 0) {
+      throw new Error(`Cannot find the IT Training group. Have you created it?`);
+    }
+
+    const groupId: string = groupResult.value[0].id;
+    const plannerResponse: GraphHttpClientResponse = await this.context.graphHttpClient.get(
+      `v1.0/groups/${groupId}/planner/plans?$select=id&$filter=title eq 'IT Training'`,
+      GraphHttpClient.configurations.v1
+    );
+    if (plannerResponse.status !== 200) {
+      throw new Error(`Get planner request returns ${groupResponse.status}, expect 200`);
+    }
+
+    const plannerResult: { value: { id: string }[] } = await plannerResponse.json();
+    if (plannerResult.value.length === 0) {
+      throw new Error(`Cannot find the IT Training planner. Have you created it?`);
+    }
+
+    const plannerId: string = plannerResult.value[0].id;
+    const body: string = JSON.stringify({
+      planId: plannerId,
+      title: `Take the training about ${info.title} in ${info.videoLink}`
+    });
+    const taskResponse: GraphHttpClientResponse = await this.context.graphHttpClient.post(
+      'v1.0/planner/tasks',
+      GraphHttpClient.configurations.v1,
+      { body }
+    );
+    if (taskResponse.status !== 201) {
+      throw new Error(`Create task for ${info.title} failed.`);
+    }
+
+    return;
   }
 }
