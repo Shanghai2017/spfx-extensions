@@ -11,11 +11,7 @@
         {
           "entrypoint": "./lib/extensions/iframePlayer/IframePlayerFieldCustomizer.js",
           "manifest": "./src/extensions/iframePlayer/IframePlayerFieldCustomizer.manifest.json"
-        }
-      ]
-    },
-    "video-menu-command-set": {
-      "components": [
+        },
         {
           "entrypoint": "./lib/extensions/videoMenu/VideoMenuCommandSet.js",
           "manifest": "./src/extensions/videoMenu/VideoMenuCommandSet.manifest.json"
