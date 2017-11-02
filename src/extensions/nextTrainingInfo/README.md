@@ -48,3 +48,13 @@ It shows the next training information in the top placeholder.
 4. Retrieve the top placeholder and check if it is available.
 
 5. Render the next training item into the top placeholder.
+
+## Step 4
+
+1. Leverage [Module CSS](https://github.com/css-modules/css-modules) to apply beautiful CSS styles.
+
+    - Set background as `$ms-color-neutralLight` as guideline from [Fabric](https://developer.microsoft.com/en-us/fabric#/styles/colors).
+    - Preserve some spacing between icon and message. We should leverage `ms-margin-right` mixin for RTL support.
+
+2. Leverage `getIconClassName` from Fabric React to apply the `Info` [icon](https://developer.microsoft.com/en-us/fabric#/styles/icons).
+
