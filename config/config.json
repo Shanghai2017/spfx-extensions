@@ -2,16 +2,12 @@
   "$schema": "https://dev.office.com/json-schemas/spfx-build/config.2.0.schema.json",
   "version": "2.0",
   "bundles": {
-    "next-training-info-application-customizer": {
+    "it-training-extensions": {
       "components": [
         {
           "entrypoint": "./lib/extensions/nextTrainingInfo/NextTrainingInfoApplicationCustomizer.js",
           "manifest": "./src/extensions/nextTrainingInfo/NextTrainingInfoApplicationCustomizer.manifest.json"
-        }
-      ]
-    },
-    "iframe-player-field-customizer": {
-      "components": [
+        },
         {
           "entrypoint": "./lib/extensions/iframePlayer/IframePlayerFieldCustomizer.js",
           "manifest": "./src/extensions/iframePlayer/IframePlayerFieldCustomizer.manifest.json"
