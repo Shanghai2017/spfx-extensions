@@ -45,7 +45,7 @@ It add a button to show QR Code for the link in contextual menu.
 
 ## Step 3
 
-1. Update the command declaration in [manifest file](VideoMenuCommandSet.manifest.json).
+1. Update the command declaration in [manifest file](QRCodeCommandSet.manifest.json).
 
     - Command ID: QR_CODE
     - Title: QR Code
