@@ -57,6 +57,16 @@ It add a button to show QR Code for the link in contextual menu.
 
 3. Because we are changing the manifest file. We need to stop and server and re-launch it to reflect the changes. Refresh the **Videos** list page with test query string. You should see the QR Code command with a fancy icon.
 
+## Step 4
+
+1. Run `npm install --save qrcode` to install the [QRCode](https://www.npmjs.com/package/qrcode) NPM package.
+
+2. Update the `onListViewUpdated` method to make the QR Code command is visible only when there is one item selected.
+
+3. Implement the `QRCodeDialog` to convert the video URL to QR Code and show it in the dialog.
+
+4. When click on the QR Code command, show `QRCodeDialog`.
+
 ## Credits
 
 This extension is using some icons from [Icon8](https://icons8.com/). They are licensed under [Creative Commons Attribution-NoDerivs 3.0 Unported](https://creativecommons.org/licenses/by-nd/3.0/). Read its license [here](https://icons8.com/license).
