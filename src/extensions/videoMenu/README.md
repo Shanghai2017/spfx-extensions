@@ -42,3 +42,7 @@ It add a button to show QR Code for the link in contextual menu.
     - `onInit`: The hook to initialize the list view command set.
     - `onListViewUpdated`: The method called when selected list items is changed. It can be used to dynamically show/hide a command.
     - `onExecute`: The method to execute concrete logic when a command is click. Check value of `event.itemId` to run different logics for different commands.
+
+## Credits
+
+This extension is using some icons from [Icon8](https://icons8.com/). They are licensed under [Creative Commons Attribution-NoDerivs 3.0 Unported](https://creativecommons.org/licenses/by-nd/3.0/). Read its license [here](https://icons8.com/license).
