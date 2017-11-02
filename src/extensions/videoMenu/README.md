@@ -43,6 +43,20 @@ It add a button to show QR Code for the link in contextual menu.
     - `onListViewUpdated`: The method called when selected list items is changed. It can be used to dynamically show/hide a command.
     - `onExecute`: The method to execute concrete logic when a command is click. Check value of `event.itemId` to run different logics for different commands.
 
+## Step 3
+
+1. Update the command declaration in [manifest file](VideoMenuCommandSet.manifest.json).
+
+    - Command ID: QR_CODE
+    - Title: QR Code
+    - iconImageUrl: https://png.icons8.com/qr-code/p1em/16/0078d7
+
+2. We should consider localization in all of our strings.
+
+    - Declare `zh-cn` and `en-us` translation for command title.
+
+3. Because we are changing the manifest file. We need to stop and server and re-launch it to reflect the changes. Refresh the **Videos** list page with test query string. You should see the QR Code command with a fancy icon.
+
 ## Credits
 
 This extension is using some icons from [Icon8](https://icons8.com/). They are licensed under [Creative Commons Attribution-NoDerivs 3.0 Unported](https://creativecommons.org/licenses/by-nd/3.0/). Read its license [here](https://icons8.com/license).
