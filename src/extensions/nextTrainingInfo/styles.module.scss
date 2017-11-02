@@ -1,0 +1,15 @@
+@import "~/office-ui-fabric-react/dist/sass/References";
+
+.info {
+  background-color: $ms-color-neutralLight;
+  padding: 1.2em;
+
+  & > * {
+    vertical-align: middle;
+  }
+}
+
+.icon {
+  font-size: 1.2em;
+  @include ms-margin-right(0.2em);
+}

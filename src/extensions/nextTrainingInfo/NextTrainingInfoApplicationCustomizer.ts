@@ -6,9 +6,11 @@ import {
   PlaceholderContent,
   PlaceholderName
 } from '@microsoft/sp-application-base';
+import { css, getIconClassName } from 'office-ui-fabric-react';
 
 import { IListItem } from './IListItem';
 
+import styles from './styles.module.scss';
 import * as strings from 'NextTrainingInfoApplicationCustomizerStrings';
 
 const LOG_SOURCE: string = 'NextTrainingInfoApplicationCustomizer';
@@ -54,8 +56,11 @@ export default class NextTrainingInfoApplicationCustomizer
     }
 
     if (topPlaceholder.domElement) {
-      topPlaceholder.domElement.textContent = `
-        Next training topic is about ${item.Title}. It will be in ${item.Date}.
+      topPlaceholder.domElement.innerHTML = `
+        <div class="${styles.info}">
+          <i class="${css(styles.icon, getIconClassName('Info'))}" aria-hidden="true"></i>
+          <span>Next training topic is about ${item.Title}. It will be in ${item.Date}.</span>
+        </div>
       `;
     }
   }
