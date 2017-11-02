@@ -1,6 +1,17 @@
-.IframePlayer {
-  .cell {
-    background-color: "[theme:themePrimary, default:#e5e5e5]";
-    display: 'inline-block';
-  }
+.container {
+  position: relative
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+
+  width: 96px;
+  height: 54px;
+  border: 0;
+
+  background-color: transparent;
+  cursor: pointer;
 }
