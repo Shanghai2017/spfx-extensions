@@ -9,10 +9,19 @@
           "manifest": "./src/extensions/nextTrainingInfo/NextTrainingInfoApplicationCustomizer.manifest.json"
         }
       ]
+    },
+    "iframe-player-field-customizer": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/iframePlayer/IframePlayerFieldCustomizer.js",
+          "manifest": "./src/extensions/iframePlayer/IframePlayerFieldCustomizer.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "NextTrainingInfoApplicationCustomizerStrings": "lib/extensions/nextTrainingInfo/loc/{locale}.js"
+    "NextTrainingInfoApplicationCustomizerStrings": "lib/extensions/nextTrainingInfo/loc/{locale}.js",
+    "IframePlayerFieldCustomizerStrings": "lib/extensions/iframePlayer/loc/{locale}.js"
   }
 }
