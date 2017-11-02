@@ -22,10 +22,10 @@ It shows the next training information in the top placeholder.
 
 3. Run `gulp serve --nobrowser` in the folder to launch the server.
 
-4. Go to your **Videos** list URL, append the following query string after it. Replace the `_MANIFEST_ID_HERE_` with the ID from your manifest file.
+4. Go to your **Videos** list URL, append the following query string after it. Replace the `_APPLICATION_CUSTOMIZER_ID_` with the ID from your manifest file.
 
     ```
-    ?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={"_MANIFEST_ID_HERE_":{"location":"ClientSideExtension.ApplicationCustomizer","properties":{"testMessage":"HelloWorld"}}}
+    ?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={"_APPLICATION_CUSTOMIZER_ID_":{"location":"ClientSideExtension.ApplicationCustomizer","properties":{"testMessage":"HelloWorld"}}}
     ```
 
 5. A dialog about *Hello World* should be popped up.
