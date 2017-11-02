@@ -36,3 +36,15 @@ It shows the next training information in the top placeholder.
     - `properties`: The data storage for each application customizer.
     - `Log.info`: Output when in debug mode, stripped out in production.
     - `Dialog.alert`: Pop up the dialog and show something.
+
+## Step 3
+
+1. Access `this.context.pageContext.list` to get the metadata of the current list. Check the list is available and the list is **Videos** list before continue.
+
+2. Access `window.g_listData.Row` to get the list items of the current list. It is creating TypeScript typing for it manually.
+
+3. Filter the training items later than today and sort them by time.
+
+4. Retrieve the top placeholder and check if it is available.
+
+5. Render the next training item into the top placeholder.
