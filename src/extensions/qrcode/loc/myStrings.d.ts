@@ -1,9 +1,9 @@
-declare interface IVideoMenuCommandSetStrings {
+declare interface IQRCodeCommandSetStrings {
   Command1: string;
   Command2: string;
 }
 
-declare module 'VideoMenuCommandSetStrings' {
-  const strings: IVideoMenuCommandSetStrings;
+declare module 'QRCodeCommandSetStrings' {
+  const strings: IQRCodeCommandSetStrings;
   export = strings;
 }

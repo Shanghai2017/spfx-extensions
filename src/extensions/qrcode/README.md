@@ -8,6 +8,6 @@ It add a button to show QR Code for the link in contextual menu.
 
     - Component type: Extension
     - Extension type: ListView Command Set
-    - Name: VideoMenu
+    - Name: QRCode
 
 2. Open [`config.json`](../../../config/config.json) file and make the new generated component into the `spfx-extensions` bundle.

@@ -13,8 +13,8 @@
           "manifest": "./src/extensions/iframePlayer/IframePlayerFieldCustomizer.manifest.json"
         },
         {
-          "entrypoint": "./lib/extensions/videoMenu/VideoMenuCommandSet.js",
-          "manifest": "./src/extensions/videoMenu/VideoMenuCommandSet.manifest.json"
+          "entrypoint": "./lib/extensions/qrcode/QRCodeCommandSet.js",
+          "manifest": "./src/extensions/qrcode/QRCodeCommandSet.manifest.json"
         }
       ]
     }
@@ -23,6 +23,6 @@
   "localizedResources": {
     "NextTrainingInfoApplicationCustomizerStrings": "lib/extensions/nextTrainingInfo/loc/{locale}.js",
     "IframePlayerFieldCustomizerStrings": "lib/extensions/iframePlayer/loc/{locale}.js",
-    "VideoMenuCommandSetStrings": "lib/extensions/videoMenu/loc/{locale}.js"
+    "QRCodeCommandSetStrings": "lib/extensions/qrcode/loc/{locale}.js"
   }
 }

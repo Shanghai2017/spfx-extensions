@@ -8,26 +8,26 @@ import {
 } from '@microsoft/sp-listview-extensibility';
 import { Dialog } from '@microsoft/sp-dialog';
 
-import * as strings from 'VideoMenuCommandSetStrings';
+import * as strings from 'QRCodeCommandSetStrings';
 
 /**
  * If your command set uses the ClientSideComponentProperties JSON input,
  * it will be deserialized into the BaseExtension.properties object.
  * You can define an interface to describe it.
  */
-export interface IVideoMenuCommandSetProperties {
+export interface IQRCodeCommandSetProperties {
   // This is an example; replace with your own properties
   sampleTextOne: string;
   sampleTextTwo: string;
 }
 
-const LOG_SOURCE: string = 'VideoMenuCommandSet';
+const LOG_SOURCE: string = 'QRCodeCommandSet';
 
-export default class VideoMenuCommandSet extends BaseListViewCommandSet<IVideoMenuCommandSetProperties> {
+export default class QRCodeCommandSet extends BaseListViewCommandSet<IQRCodeCommandSetProperties> {
 
   @override
   public onInit(): Promise<void> {
-    Log.info(LOG_SOURCE, 'Initialized VideoMenuCommandSet');
+    Log.info(LOG_SOURCE, 'Initialized QRCodeCommandSet');
     return Promise.resolve();
   }
 
