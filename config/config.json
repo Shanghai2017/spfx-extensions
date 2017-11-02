@@ -15,11 +15,7 @@
         {
           "entrypoint": "./lib/extensions/qrcode/QRCodeCommandSet.js",
           "manifest": "./src/extensions/qrcode/QRCodeCommandSet.manifest.json"
-        }
-      ]
-    },
-    "add-task-command-set": {
-      "components": [
+        },
         {
           "entrypoint": "./lib/extensions/addTask/AddTaskCommandSet.js",
           "manifest": "./src/extensions/addTask/AddTaskCommandSet.manifest.json"
