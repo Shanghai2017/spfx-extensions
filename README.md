@@ -1,26 +1,20 @@
-## spfx-extensions
+# spfx-extensions
 
-This is where you include your WebPart documentation.
+The sample code of SPFx extensions.
 
-### Building the code
+## Contents
 
-```bash
-git clone the repo
-npm i
-npm i -g gulp
-gulp
-```
+This repo contains 4 extensions:
 
-This package produces the following:
+- [**nextTrainingInfo**](src/extensions/nextTrainingInfo/README.md): It leverages *Application Customizer* to show the next training information in the page top placeholder.
+- [**iframePlayer**](src/extensions/iframePlayer/README.md): It leverages *Field Customizer* to show the training video as iframe player.
+- [**qrcode**](src/extensions/qrcode/README.md): It leverages *List View Command Set* to add a button in contextual menu to show the QR code of the training URL.
+- [**addTask**](src/extensions/addTask/README.md): It leverages *SPGraphHttpClient* to integrate Microsoft Graph, provides a button in contextual menu to add the training as a task in Microsoft Planner.
 
-* lib/* - intermediate-stage commonjs build artifacts
-* dist/* - the bundled script, along with other resources
-* deploy/* - all resources which should be uploaded to a CDN.
+## Tutorial
 
-### Build options
+Each extension has its tutorial in its README file. Besides, this repo has step-by-step branches, you can leverage branch diff feature to compare what is happening between steps.
 
-gulp clean - TODO
-gulp test - TODO
-gulp serve - TODO
-gulp bundle - TODO
-gulp package-solution - TODO
+## Credits
+
+This repo is using some icons from [Icon8](https://icons8.com/). They are licensed under [Creative Commons Attribution-NoDerivs 3.0 Unported](https://creativecommons.org/licenses/by-nd/3.0/). Read its license [here](https://icons8.com/license).
