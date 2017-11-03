@@ -23,6 +23,7 @@ export default class AddTaskCommandSet extends BaseListViewCommandSet<{}> {
 
   @override
   public onListViewUpdated(event: IListViewCommandSetListViewUpdatedParameters): void {
+    // Show add task command only when one item is selected.
     const addTaskCommand: Command = this.tryGetCommand('ADD_TASK');
     if (addTaskCommand) {
       addTaskCommand.visible = event.selectedRows.length === 1;
@@ -36,6 +37,7 @@ export default class AddTaskCommandSet extends BaseListViewCommandSet<{}> {
 
     switch (event.itemId) {
       case 'ADD_TASK':
+        // Add training as a task to planner. Show the result in a dialog.
         this._addToPlanner({ title, videoLink })
           .then(() => Dialog.alert(`Add training ${title} to Planner successfully!`))
           .catch((e: Error) => Dialog.alert(`Add training ${title} to Planner failed. ${e.message}`));
@@ -46,6 +48,7 @@ export default class AddTaskCommandSet extends BaseListViewCommandSet<{}> {
   }
 
   private async _addToPlanner(info: { title: string, videoLink: string }): Promise<void> {
+    // Get the group ID with name *IT Training*.
     const groupResponse: GraphHttpClientResponse = await this.context.graphHttpClient.get(
       "v1.0/groups/?$select=id&$filter=displayName eq 'IT Training'",
       GraphHttpClient.configurations.v1
@@ -59,23 +62,25 @@ export default class AddTaskCommandSet extends BaseListViewCommandSet<{}> {
       throw new Error(`Cannot find the IT Training group. Have you created it?`);
     }
 
+    // Get the plan ID with tile *IT Training*.
     const groupId: string = groupResult.value[0].id;
-    const plannerResponse: GraphHttpClientResponse = await this.context.graphHttpClient.get(
+    const planResponse: GraphHttpClientResponse = await this.context.graphHttpClient.get(
       `v1.0/groups/${groupId}/planner/plans?$select=id&$filter=title eq 'IT Training'`,
       GraphHttpClient.configurations.v1
     );
-    if (plannerResponse.status !== 200) {
+    if (planResponse.status !== 200) {
       throw new Error(`Get planner request returns ${groupResponse.status}, expect 200`);
     }
 
-    const plannerResult: { value: { id: string }[] } = await plannerResponse.json();
-    if (plannerResult.value.length === 0) {
+    const planResult: { value: { id: string }[] } = await planResponse.json();
+    if (planResult.value.length === 0) {
       throw new Error(`Cannot find the IT Training planner. Have you created it?`);
     }
 
-    const plannerId: string = plannerResult.value[0].id;
+    // Create the task about the training to the plan.
+    const planId: string = planResult.value[0].id;
     const body: string = JSON.stringify({
-      planId: plannerId,
+      planId,
       title: `Take the training about ${info.title} in ${info.videoLink}`
     });
     const taskResponse: GraphHttpClientResponse = await this.context.graphHttpClient.post(
@@ -87,6 +92,7 @@ export default class AddTaskCommandSet extends BaseListViewCommandSet<{}> {
       throw new Error(`Create task for ${info.title} failed.`);
     }
 
+    // Finish successfully.
     return;
   }
 }
