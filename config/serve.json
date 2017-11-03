@@ -9,7 +9,6 @@
         "525c7b58-f5f5-4827-8825-059c4aca3168": {
           "location": "ClientSideExtension.ApplicationCustomizer",
           "properties": {
-            "testMessage": "Test message"
           }
         }
       }
