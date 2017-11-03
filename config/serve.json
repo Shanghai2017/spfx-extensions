@@ -4,23 +4,11 @@
   "https": true,
   "serveConfigurations": {
     "default": {
-      "pageUrl": "https://contoso.sharepoint.com/sites/mySite/SitePages/myPage.aspx",
+      "pageUrl": "https://m365x344674.sharepoint.com/sites/it-training/Lists/Videos/AllItems.aspx",
       "customActions": {
         "525c7b58-f5f5-4827-8825-059c4aca3168": {
           "location": "ClientSideExtension.ApplicationCustomizer",
           "properties": {
-            "testMessage": "Test message"
-          }
-        }
-      }
-    },
-    "nextTrainingInfo": {
-      "pageUrl": "https://contoso.sharepoint.com/sites/mySite/SitePages/myPage.aspx",
-      "customActions": {
-        "525c7b58-f5f5-4827-8825-059c4aca3168": {
-          "location": "ClientSideExtension.ApplicationCustomizer",
-          "properties": {
-            "testMessage": "Test message"
           }
         }
       }
