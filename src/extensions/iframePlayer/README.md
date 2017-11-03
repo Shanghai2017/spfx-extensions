@@ -23,23 +23,15 @@ It shows the iframe player in a customized field.
 
 ## Step 3
 
-1. Run `gulp serve --nobrowser` to launch the server.
+1. Test the generated code.
 
-2. Apply the following URL into your **Videos** list URL. Replace the `_FIELD_CUSTOMIZER_ID_` with ID from [the `IframePlayer` manifest file](IframePlayerFieldCustomizer.manifest.json). Notice the `Link` field name in the JSON blob matches the column name in **Videos** list.
+    - Open [`serve.json` file](../../../config/serve.json), move the `fieldCustomizers` test query under `default` section.
+    - Update the `InternalFieldName` to `Link` as it is the target columns to customize.
+    - Run `gulp serve` to launch the server.
+    - The **Videos** list page opens. Click *Load debug scripts*.
+    - Note that, the cells under *Link* columns are prefixed with `Value` string.
 
-    ```
-    ?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&fieldCustomizers={"Link":{"id":"_FIELD_CUSTOMIZER_ID_","properties":{"sampleText":"Test"}}}
-    ```
-
-3. Notice the `Link` column in the table has prefix the `Test: ` string dynamically.
-
-4. We can combine the test query string for application customizer with this one. Replace the `_ID_` accordingly. You should see both extensions are working.
-
-    ```
-    ?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={"_APPLICATION_CUSTOMIZER_ID_":{"location":"ClientSideExtension.ApplicationCustomizer","properties":{}}}&fieldCustomizers={"Link":{"id":"_FIELD_CUSTOMIZER_ID_","properties":{"sampleText":"Test"}}}
-    ```
-
-5. Walk through the code in [`IframePlayerFieldCustomizer` file](IframePlayerFieldCustomizer.ts).
+2. Walk through the code in [`IframePlayerFieldCustomizer` file](IframePlayerFieldCustomizer.ts).
 
     - `onInit`: The hook run on field customizer initialization phrase.
     - `onRenderCell`: The method to customize the `event.domElement` on each cell in the target column.
