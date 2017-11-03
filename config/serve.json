@@ -14,8 +14,6 @@
         "5acce4dd-cde5-4e77-acec-ad4ff0e1c0dc": {
           "location": "ClientSideExtension.ListViewCommandSet.CommandBar",
           "properties": {
-            "sampleTextOne": "One item is selected in the list",
-            "sampleTextTwo": "This command is always visible."
           }
         }
       },
