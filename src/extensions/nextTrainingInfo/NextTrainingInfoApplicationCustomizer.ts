@@ -21,12 +21,14 @@ export default class NextTrainingInfoApplicationCustomizer
   public onInit(): Promise<void> {
     Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
 
+    // Check if it is Videos list.
     const list: undefined | SPList = this.context.pageContext.list;
     if (!list || list.serverRelativeUrl !== '/sites/it-training/Lists/Videos') {
       Log.info(LOG_SOURCE, 'Not video list');
       return Promise.resolve();
     }
 
+    // Filter, sort and retrieve the next training item.
     const now = new Date();
     const listData = (window as any).g_listData.ListData;
     const items = listData.Row
@@ -34,6 +36,7 @@ export default class NextTrainingInfoApplicationCustomizer
       .sort((a: IListItem, b: IListItem) => new Date(a.Date).getTime() - new Date(b.Date).getTime());
     const nextItem = items[0];
 
+    // Render the next training item to the top placeholder.
     this._renderNextTraining(nextItem);
 
     return Promise.resolve();
@@ -42,22 +45,24 @@ export default class NextTrainingInfoApplicationCustomizer
   private _renderNextTraining(item: undefined | IListItem): void {
     Log.info(LOG_SOURCE, 'RenderPlaceHolders');
 
+    // Do nothing if there is no next training item.
     if (!item) {
       Log.info(LOG_SOURCE, 'No next item');
       return;
     }
 
+    // Retrieve the top placeholder from context.
     const topPlaceholder: PlaceholderContent = this.context.placeholderProvider.tryCreateContent(PlaceholderName.Top);
     if (!topPlaceholder) {
       Log.error(LOG_SOURCE, new Error('The top placeholder is not available.'));
       return;
     }
 
+    // Show the next training item info to the top placeholder.
     if (topPlaceholder.domElement) {
       topPlaceholder.domElement.textContent = `
         Next training topic is about ${item.Title}. It will be in ${item.Date}.
       `;
     }
   }
-
 }
