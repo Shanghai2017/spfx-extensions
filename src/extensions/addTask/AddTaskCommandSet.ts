@@ -23,6 +23,7 @@ export default class AddTaskCommandSet extends BaseListViewCommandSet<{}> {
 
   @override
   public onListViewUpdated(event: IListViewCommandSetListViewUpdatedParameters): void {
+    // Show add task command only when one item is selected.
     const addTaskCommand: Command = this.tryGetCommand('ADD_TASK');
     if (addTaskCommand) {
       addTaskCommand.visible = event.selectedRows.length === 1;
@@ -36,6 +37,7 @@ export default class AddTaskCommandSet extends BaseListViewCommandSet<{}> {
 
     switch (event.itemId) {
       case 'ADD_TASK':
+        // Add training as a task to planner. Show the result in a dialog.
         this._addToPlanner({ title, videoLink })
           .then(() => Dialog.alert(`Add training ${title} to Planner successfully!`))
           .catch((e: Error) => Dialog.alert(`Add training ${title} to Planner failed. ${e.message}`));
@@ -46,6 +48,7 @@ export default class AddTaskCommandSet extends BaseListViewCommandSet<{}> {
   }
 
   private async _addToPlanner(info: { title: string, videoLink: string }): Promise<void> {
+    // Get the group ID with name *IT Training*.
     const groupResponse: GraphHttpClientResponse = await this.context.graphHttpClient.get(
       "v1.0/groups/?$select=id&$filter=displayName eq 'IT Training'",
       GraphHttpClient.configurations.v1
@@ -59,6 +62,7 @@ export default class AddTaskCommandSet extends BaseListViewCommandSet<{}> {
       throw new Error(`Cannot find the IT Training group. Have you created it?`);
     }
 
+    // Get the plan ID with tile *IT Training*.
     const groupId: string = groupResult.value[0].id;
     const planResponse: GraphHttpClientResponse = await this.context.graphHttpClient.get(
       `v1.0/groups/${groupId}/planner/plans?$select=id&$filter=title eq 'IT Training'`,
@@ -73,6 +77,7 @@ export default class AddTaskCommandSet extends BaseListViewCommandSet<{}> {
       throw new Error(`Cannot find the IT Training planner. Have you created it?`);
     }
 
+    // Create the task about the training to the plan.
     const planId: string = planResult.value[0].id;
     const body: string = JSON.stringify({
       planId,
@@ -87,6 +92,7 @@ export default class AddTaskCommandSet extends BaseListViewCommandSet<{}> {
       throw new Error(`Create task for ${info.title} failed.`);
     }
 
+    // Finish successfully.
     return;
   }
 }
