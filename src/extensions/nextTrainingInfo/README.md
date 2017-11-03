@@ -22,7 +22,7 @@ It shows the next training information in the top placeholder.
 
 2. Test the generated code.
 
-    -Put the **Videos** list URL to `pageUrl` field in [`serve.json` file](../../../config/serve.json).
+    - Put the **Videos** list URL to `pageUrl` field in [`serve.json` file](../../../config/serve.json).
     - Run `gulp serve` in the folder to launch the server.
     - It will open the test page with test query string automatically.
     - Click *Load debug scripts* in warning dialog.
