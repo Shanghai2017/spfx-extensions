@@ -46,7 +46,11 @@ It add a button to show QR Code for the link in contextual menu.
 
     - Declare `zh-cn` and `en-us` translation for command title.
 
-3. Because we are changing the manifest file. We need to stop and server and re-launch it to reflect the changes. Refresh the **Videos** list page with test query string. You should see the QR Code command with a fancy icon.
+3. Restart the test server and test the command.
+
+    - Because we are changing the manifest file. We need to stop and restart server.
+    - After page opens, select one item, the QR Code command with a fancy icon should be shown in the contextual menu.
+    - Because we have no implementation on it, nothing happens if click on it.
 
 ## Credits
 
