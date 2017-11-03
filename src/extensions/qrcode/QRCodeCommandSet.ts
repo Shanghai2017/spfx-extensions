@@ -23,6 +23,7 @@ export default class QRCodeCommandSet extends BaseListViewCommandSet<{}> {
 
   @override
   public onListViewUpdated(event: IListViewCommandSetListViewUpdatedParameters): void {
+    // Show the QR Code command only when one item is selected.
     const qrCodeCommand: Command = this.tryGetCommand('QR_CODE');
     if (qrCodeCommand) {
       qrCodeCommand.visible = event.selectedRows.length === 1;
@@ -34,6 +35,7 @@ export default class QRCodeCommandSet extends BaseListViewCommandSet<{}> {
     const videoLink: string = event.selectedRows[0].getValueByName('Link');
     switch (event.itemId) {
       case 'QR_CODE':
+        // Show the QR Code in dialog.
         const dialog: QRCodeDialog = new QRCodeDialog(videoLink);
         dialog.show();
         break;
