@@ -14,30 +14,21 @@ It add a button to show QR Code for the link in contextual menu.
 
 ## Step 2
 
-1. Run `gulp serve --nobrowser` to launch the server. Append the following query string to **Videos** list URL. Replace `_COMMAND_SET_ID_` with the ID in [manifest file](QRCodeCommandSet.manifest.json).
+1. Test the generated code.
 
-    ```
-    ?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={"_COMMAND_SET_ID_":{"location":"ClientSideExtension.ListViewCommandSet.CommandBar","properties":{"sampleTextOne":"One item is selected in the list.","sampleTextTwo":"This command is always visible."}}}
-    ```
+    - Open [`serve.json` file](../../../serve.json), move the `customActions` under `qrcode` to `default` section. Currently, we have two entries under `customActions` - one for *Application Customizer*, another for *List View Command Set*.
+    - Run `gulp serve` to launch the server. If you are running the server, you need to stop and restart it because the server config is changed.
+    - The **Videos** list page opens. Click *Load debug scripts*.
+    - Select one item in the list, there is *Command One* in the contextual menu. Click on it will show a dialog.
 
-2. Notice that, *Command Two* is shown in the contextual menu. When select on item, *Command One* is shown dynamically. Click on these two command buttons will show a dialog.
-
-3. You can also combine the query string with the previous two extension components. Note that, both *Application Customizer* and *List View Command Set* are using query string key `customActions` to specify value. Replace the `_ID_` values accordingly.
-
-    ```
-    ?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&fieldCustomizers={"Link":{"id":"_FIELD_CUSTOMIZER_ID_","properties":{}}}&customActions={"_APPLICATION_CUSTOMIZER_ID_":{"location":"ClientSideExtension.ApplicationCustomizer","properties":{}},"_COMMAND_SET_ID_":{"location":"ClientSideExtension.ListViewCommandSet.CommandBar","properties":{"sampleTextOne":"One item is selected in the list.","sampleTextTwo":"This command is always visible."}}}
-    ```
-
-4. All three extensions should work fine.
-
-5. Walk through the code in [manifest file](QRCodeCommandSet.manifest.json).
+2. Walk through the code in [manifest file](QRCodeCommandSet.manifest.json).
 
     - `items`: The object to declare which commands this extension is providing. The key is the command ID, the value is its configuration.
     - `title`: The title to show in the UI for the command. It support localized strings.
     - `iconImageUrl`: The icon image URL for the command. Currently, only image URL from web can be used here. It shows as 16x16 size.
     - `type`: Always fill as `command` at this moment.
 
-6. Walk through the code in [`QRCodeCommandSet` file](QRCodeCommandSet.ts).
+3. Walk through the code in [`QRCodeCommandSet` file](QRCodeCommandSet.ts).
 
     - `onInit`: The hook to initialize the list view command set.
     - `onListViewUpdated`: The method called when selected list items is changed. It can be used to dynamically show/hide a command.
@@ -55,7 +46,11 @@ It add a button to show QR Code for the link in contextual menu.
 
     - Declare `zh-cn` and `en-us` translation for command title.
 
-3. Because we are changing the manifest file. We need to stop and server and re-launch it to reflect the changes. Refresh the **Videos** list page with test query string. You should see the QR Code command with a fancy icon.
+3. Restart the test server and test the command.
+
+    - Because we are changing the manifest file. We need to stop and restart server.
+    - After page opens, select one item, the QR Code command with a fancy icon should be shown in the contextual menu.
+    - Because we have no implementation on it, nothing happens if click on it.
 
 ## Step 4
 
