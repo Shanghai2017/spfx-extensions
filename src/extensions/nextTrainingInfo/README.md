@@ -28,7 +28,13 @@ It shows the next training information in the top placeholder.
     - Click *Load debug scripts* in warning dialog.
     - A dialog about *Test Message* pops up.
 
-3. Walk through the code in [extension file](NextTrainingInfoApplicationCustomizer).
+3. Get in touch with [manifest file](NextTrainingInfoApplicationCustomizer.manifest.json).
+
+    - Each extension has its own manifest file. The manifest file defines the extension ID, component type, etc.
+    - The [`serve.json` file](../../../config/serve.json) uses the extension ID to figure out the extension to test.
+    - The [`elements.xml` file](../../../sharepoint/assets/elements.xml) uses the extension ID to connect the extension in production. This will be mentioned in the following section.
+
+4. Walk through the code in [extension file](NextTrainingInfoApplicationCustomizer).
 
     - `onInit`: The hook is run on the application customizer when initialize.
     - `properties`: The data storage for each application customizer.
