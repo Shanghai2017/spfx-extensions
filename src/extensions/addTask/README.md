@@ -32,13 +32,10 @@ It provides a button in contextual menu to add the training task to [Microsoft P
 
 1. Run `yo @microsoft/sharepoint` to generate a new List View Command Set extension.
 
-2. Update the [`config.json`](../../../config/config.json) file to make one bundle.
+2. Update configurations.
 
-3. Prepare the test query string.
-
-    ```
-    ?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&fieldCustomizers={"Link":{"id":"_FIELD_CUSTOMIZER_ID_","properties":{}}}&customActions={"_APPLICATION_CUSTOMIZER_ID_":{"location":"ClientSideExtension.ApplicationCustomizer","properties":{}},"_COMMAND_SET_1_ID_":{"location":"ClientSideExtension.ListViewCommandSet.CommandBar","properties":{}},"_COMMAND_SET_2_ID_":{"location":"ClientSideExtension.ListViewCommandSet.CommandBar","properties":{}}}
-    ```
+    - Update [`config.json`](../../../config/config.json) file to make one bundle.
+    - Update [`serve.json`](../../../config/serve.json) file for the test query.
 
 4. Update the command declaration in [manifest file](AddTaskCommandSet.manifest.json).
 
