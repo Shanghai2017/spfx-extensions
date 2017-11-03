@@ -1,4 +1,4 @@
 {
   "$schema": "https://dev.office.com/json-schemas/spfx-build/write-manifests.schema.json",
-  "cdnBasePath": "/sites/it-training/SiteAssets/spfx-extensions"
+  "cdnBasePath": "https://m365x344674.sharepoint.com/sites/it-training/SiteAssets/spfx-extensions"
 }
