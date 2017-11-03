@@ -23,6 +23,7 @@ export default class IframePlayerFieldCustomizer
 
   @override
   public onRenderCell(event: IFieldCustomizerCellEventParameters): void {
+    // Render IframePlayer React component to DOM element of the cell.
     ReactDOM.render(
       React.createElement(IframePlayer, { videoLink: event.listItem.getValueByName('Link') }),
       event.domElement
@@ -31,6 +32,7 @@ export default class IframePlayerFieldCustomizer
 
   @override
   public onDisposeCell(event: IFieldCustomizerCellEventParameters): void {
+    // Unmount the React element from the DOM element.
     ReactDOM.unmountComponentAtNode(event.domElement);
     super.onDisposeCell(event);
   }
